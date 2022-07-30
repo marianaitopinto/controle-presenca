@@ -14,3 +14,7 @@ export async function activateEmployee(cpf: string, password: string) {
     data: { password, isActive: true },
   });
 }
+
+export async function includePresence(id: number) {
+  return prisma.presences.create({ data: { employeeId: id } });
+}

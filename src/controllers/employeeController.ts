@@ -17,3 +17,11 @@ export async function activeEmployee(req: Request, res: Response) {
 
   res.sendStatus(200);
 }
+
+export async function registerPresence(req: Request, res: Response) {
+  const { cpf, password }: { cpf: string; password: string } = req.body;
+
+  await employeeService.createPresence(cpf, password);
+
+  res.sendStatus(200);
+}

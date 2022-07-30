@@ -24,3 +24,20 @@ export async function activateEmployee(cpf: string, password: string) {
 
   await employeeRepository.activateEmployee(cpf, hashedPassword);
 }
+
+export async function createPresence(cpf: string, password: string) {
+  const employee = await employeeRepository.findEmployeeByCpf(cpf);
+  if (!employee) throw new AppError("The employee was not found!", 404);
+
+  await checkPassword(password, employee.password);
+
+  await employeeRepository.includePresence(employee.id);
+}
+
+async function checkPassword(password: string, encryptPassword: string) {
+  const check = await bcrypt.compareSync(password, encryptPassword);
+
+  if (!check) throw new AppError("Unauthorized", 401);
+
+  return;
+}

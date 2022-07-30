@@ -16,4 +16,14 @@ model employees {
   password String?
   isActive Boolean @default(false)
   isAdmin  Boolean @default(false)
+
+  presences presences[]
+}
+
+model presences {
+  id         Int      @id @default(autoincrement())
+  employeeId Int
+  date       DateTime @default(now())
+
+  employee employees @relation(fields: [employeeId], references: [id])
 }
