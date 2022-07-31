@@ -12,7 +12,7 @@ export async function signIn(cpf, password) {
     throw new AppError("CPF or password is incorrect", 401);
 
   if (!user.isAdmin) throw new AppError("Unauthorized", 401);
-  
+
   const token = await generateToken(user);
 
   return token;
