@@ -12,3 +12,11 @@ export async function deletePresence(req: Request, res: Response) {
 
   res.sendStatus(200);
 }
+
+export async function includePresence(req: Request, res: Response) {
+  const { cpf, date, hour } = req.body;
+
+  await adminService.includePresence(cpf, date, hour);
+  
+  res.sendStatus(200);
+}
