@@ -17,6 +17,16 @@ export async function includePresence(req: Request, res: Response) {
   const { cpf, date, hour } = req.body;
 
   await adminService.includePresence(cpf, date, hour);
-  
+
+  res.sendStatus(200);
+}
+
+export async function editPresence(req: Request, res: Response) {
+  const { presenceId } = req.params;
+
+  const { date, hour } = req.body;
+
+  await adminService.editPresence(parseInt(presenceId), date, hour);
+
   res.sendStatus(200);
 }

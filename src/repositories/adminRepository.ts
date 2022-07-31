@@ -16,3 +16,10 @@ export async function createPresence(id: number, date) {
     },
   });
 }
+
+export async function editPresence(id: number, date) {
+  return prisma.presences.update({
+    where: { id },
+    data: { date },
+  });
+}

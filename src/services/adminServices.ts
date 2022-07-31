@@ -19,6 +19,16 @@ export async function includePresence(cpf: string, date: string, hour: string) {
   await adminRepository.createPresence(employee.id, formatedDate);
 }
 
+export async function editPresence(presenceId: number, date: string, hour: string) {
+  const presence = await adminRepository.findPresenceById(presenceId);
+  if (!presence) throw new AppError("The presence was not found!", 404);
+
+  date = formatDate(date, hour);
+  const formatedDate = new Date(date);
+
+  await adminRepository.editPresence(presenceId, formatedDate);
+}
+
 function formatDateToBr(date, hour) {
   const dateSplit = date.split("-");
 
