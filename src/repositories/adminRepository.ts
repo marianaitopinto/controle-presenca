@@ -42,3 +42,14 @@ export async function filterPresence(
 
   return presences;
 }
+
+export async function filterPresences(inicialDate: Date, finalDate: Date) {
+  const presences = await prisma.presences.findMany({
+    where: {
+      AND: [{ date: { gte: inicialDate } }, { date: { lte: finalDate } }],
+    },
+    include: { employee: { select: { cpf: true } } },
+  });
+
+  return presences;
+}

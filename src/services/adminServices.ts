@@ -43,27 +43,36 @@ export async function getPresences(
 
   const inicialHour = "00:00";
   inicialDate = formatDate(inicialDate, inicialHour);
-  const date1 = new Date(inicialDate);
+  const firstDate = new Date(inicialDate);
 
   const finalHour = "23:59";
   finalDate = formatDate(finalDate, finalHour);
-  const date2 = new Date(finalDate);
+  const secondDate = new Date(finalDate);
 
-  console.log(date1, date2, employee.id)
-
-  const presences = await adminRepository.filterPresence(employee.id, date1, date2)
+  const presences = await adminRepository.filterPresence(
+    employee.id,
+    firstDate,
+    secondDate
+  );
 
   return presences;
 }
 
-function formatDateToBr(date, hour) {
-  const dateSplit = date.split("-");
+export async function getAllPresences(inicialDate: string, finalDate: string) {
+  const inicialHour = "00:00";
+  inicialDate = formatDate(inicialDate, inicialHour);
+  const firstDate = new Date(inicialDate);
 
-  const formatedDate = `${("0" + dateSplit[2]).slice(-2)}-${(
-    "0" + dateSplit[1]
-  ).slice(-2)}-${dateSplit[0]} ${"0" + hour.slice(-4)}`;
+  const finalHour = "23:59";
+  finalDate = formatDate(finalDate, finalHour);
+  const secondDate = new Date(finalDate);
 
-  return formatedDate;
+  const presences = await adminRepository.filterPresences(
+    firstDate,
+    secondDate
+  );
+
+  return presences;
 }
 
 function formatDate(date, hour) {

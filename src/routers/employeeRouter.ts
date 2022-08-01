@@ -10,7 +10,11 @@ import { newEmployeeSchema } from "../schemas/employeeSchema";
 
 const employeeRouter = Router();
 
-employeeRouter.post("/employee", validateSchemaMiddleware(newEmployeeSchema), createNewEmployee);
+employeeRouter.post(
+  "/employee",
+  validateSchemaMiddleware(newEmployeeSchema),
+  createNewEmployee
+);
 employeeRouter.post("/employee/activate", activeEmployee);
 employeeRouter.post("/employee/presence", registerPresence);
 
