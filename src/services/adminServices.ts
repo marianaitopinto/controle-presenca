@@ -19,7 +19,11 @@ export async function includePresence(cpf: string, date: string, hour: string) {
   await adminRepository.createPresence(employee.id, formatedDate);
 }
 
-export async function editPresence(presenceId: number, date: string, hour: string) {
+export async function editPresence(
+  presenceId: number,
+  date: string,
+  hour: string
+) {
   const presence = await adminRepository.findPresenceById(presenceId);
   if (!presence) throw new AppError("The presence was not found!", 404);
 
@@ -27,6 +31,29 @@ export async function editPresence(presenceId: number, date: string, hour: strin
   const formatedDate = new Date(date);
 
   await adminRepository.editPresence(presenceId, formatedDate);
+}
+
+export async function getPresences(
+  cpf: string,
+  inicialDate: string,
+  finalDate: string
+) {
+  const employee = await employeeRepository.findEmployeeByCpf(cpf);
+  if (!employee) throw new AppError("The employee was not found!", 404);
+
+  const inicialHour = "00:00";
+  inicialDate = formatDate(inicialDate, inicialHour);
+  const date1 = new Date(inicialDate);
+
+  const finalHour = "23:59";
+  finalDate = formatDate(finalDate, finalHour);
+  const date2 = new Date(finalDate);
+
+  console.log(date1, date2, employee.id)
+
+  const presences = await adminRepository.filterPresence(employee.id, date1, date2)
+
+  return presences;
 }
 
 function formatDateToBr(date, hour) {

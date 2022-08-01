@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
 import * as adminService from "../services/adminServices";
 
-export async function getPresences(req: Request, res: Response) {
+export async function getPresencesByCpf(req: Request, res: Response) {
   const { cpf, inicialDate, finalDate } = req.body;
+
+  const presences = await adminService.getPresences(cpf, inicialDate, finalDate);
+  console.log(presences)
+  res.status(200).send({presences});
 }
 
 export async function deletePresence(req: Request, res: Response) {

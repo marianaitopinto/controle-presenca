@@ -23,3 +23,22 @@ export async function editPresence(id: number, date) {
     data: { date },
   });
 }
+
+export async function filterPresence(
+  id: number,
+  inicialDate: Date,
+  finalDate: Date
+) {
+  const presences = await prisma.presences.findMany({
+    where: {
+      AND: [
+        { employeeId: id },
+        { date: { gte: inicialDate } },
+        { date: { lte: finalDate } },
+      ],
+    },
+    include: { employee: { select: { cpf: true } } },
+  });
+
+  return presences;
+}
