@@ -5,12 +5,12 @@ import * as employeeRepository from "../repositories/employeeRepository";
 
 const SALT_ROUNDS = 10;
 
-export async function createNewEmployee(cpf: string) {
+export async function createNewEmployee(cpf: string, name: string) {
   const employeeExist = await employeeRepository.findEmployeeByCpf(cpf);
   if (employeeExist)
     throw new AppError("The employee is already registered!", 409);
 
-  await employeeRepository.insertEmployee(cpf);
+  await employeeRepository.insertEmployee(cpf, name);
 }
 
 export async function activateEmployee(cpf: string, password: string) {

@@ -3,9 +3,9 @@ import { Request, Response } from "express";
 import * as employeeService from "../services/employeeService";
 
 export async function createNewEmployee(req: Request, res: Response) {
-  const { cpf }: { cpf: string } = req.body;
+  const { cpf, name }: { cpf: string, name:string } = req.body;
 
-  await employeeService.createNewEmployee(cpf);
+  await employeeService.createNewEmployee(cpf, name);
 
   res.status(201).send("Employee registered!");
 }

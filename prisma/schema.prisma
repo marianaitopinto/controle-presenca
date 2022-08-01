@@ -13,6 +13,7 @@ datasource db {
 model employees {
   id       Int     @id @default(autoincrement())
   cpf      String  @unique
+  name     String
   password String?
   isActive Boolean @default(false)
   isAdmin  Boolean @default(false)

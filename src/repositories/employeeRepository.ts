@@ -4,8 +4,8 @@ export async function findEmployeeByCpf(cpf: string) {
   return prisma.employees.findUnique({ where: { cpf } });
 }
 
-export async function insertEmployee(cpf: string) {
-  return prisma.employees.create({ data: { cpf } });
+export async function insertEmployee(cpf: string, name: string) {
+  return prisma.employees.create({ data: { cpf, name } });
 }
 
 export async function activateEmployee(cpf: string, password: string) {

@@ -5,6 +5,7 @@ export const newEmployeeSchema = joi.object({
     .string()
     .required()
     .pattern(/^([0-9]{11})$/),
+  name: joi.string().required(),
 });
 
 export const employeeSchema = joi.object({

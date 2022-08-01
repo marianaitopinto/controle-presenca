@@ -37,7 +37,7 @@ export async function filterPresence(
         { date: { lte: finalDate } },
       ],
     },
-    include: { employee: { select: { cpf: true } } },
+    include: { employee: { select: { cpf: true, name: true } } },
   });
 
   return presences;
@@ -48,7 +48,7 @@ export async function filterPresences(inicialDate: Date, finalDate: Date) {
     where: {
       AND: [{ date: { gte: inicialDate } }, { date: { lte: finalDate } }],
     },
-    include: { employee: { select: { cpf: true } } },
+    include: { employee: { select: { cpf: true, name: true } } },
   });
 
   return presences;
