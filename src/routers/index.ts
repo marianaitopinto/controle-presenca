@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import employeeRouter from "./employeeRouter";
 import authRouter from "./authRouter";
-import adminRouter from "./adminController";
+import adminRouter from "./adminRouter";
 
 const routers = Router();
 
