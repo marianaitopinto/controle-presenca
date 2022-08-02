@@ -7,7 +7,7 @@
     "test": "dotenv -e .env.test prisma db push && dotenv -e .env.test jest -- -i --coverage",
     "dev": "nodemon src/server.ts",
     "start": "tsc && node build/server.ts",
-    "build": "tsc"
+    "build": "tsc src/server.ts"
   },
   "keywords": [],
   "author": "Mariana Ito",
