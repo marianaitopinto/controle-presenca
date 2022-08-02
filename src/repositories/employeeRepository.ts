@@ -18,3 +18,10 @@ export async function activateEmployee(cpf: string, password: string) {
 export async function includePresence(id: number) {
   return prisma.presences.create({ data: { employeeId: id } });
 }
+
+export const employeeRepository = {
+  findEmployeeByCpf,
+  insertEmployee,
+  activateEmployee,
+  includePresence
+}

@@ -41,3 +41,9 @@ async function checkPassword(password: string, encryptPassword: string) {
 
   return;
 }
+
+export const employeeService = {
+  createNewEmployee,
+  activateEmployee,
+  createPresence
+}
